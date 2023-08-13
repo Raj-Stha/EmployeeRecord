@@ -1,0 +1,59 @@
+<div class="row">
+  <div
+    *ngIf="employeeDetails?.length !== 0"
+    class="col-md-12 col-lg-8 offset-lg-2"
+  >
+    <table class="table table-responsive">
+      <thead class="">
+        <tr class="primary">
+          <th scope="col" class="primary text-white d-none d-sm-table-cell">
+            S.No
+          </th>
+          <th scope="col " class="primary text-white">Employee</th>
+
+          <th scope="col" class="primary text-white d-none d-sm-table-cell">
+            Designation
+          </th>
+          <th scope="col" class="primary text-white d-none d-sm-table-cell">
+            Mobile
+          </th>
+          <th scope="col" class="primary text-white">Active</th>
+          <th scope="col" class="primary text-white text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let emp of employeeDetails; index as i">
+        <tr class="">
+          <th class="d-none d-sm-table-cell">{{ i + 1 }}</th>
+          <td class="">{{ emp.employeeName }}</td>
+          <td class="d-none d-sm-table-cell">{{ emp.designation }}</td>
+          <td class="d-none d-sm-table-cell">
+            {{ hideNumber(emp.mobile, 5) }}
+          </td>
+
+          <td>{{ emp.active }}</td>
+          <td
+            scope="col"
+            class="d-flex justify-content-center gap-1 gap-sm-3 col"
+          >
+            <button
+              type="click"
+              class="btn secondary text-white px-2 px-sm-3"
+              routerLink="update/{{ emp.id }}"
+            >
+              Edit
+            </button>
+            <button
+              type="click"
+              class="btn btn-danger px-1 px-sm-3"
+              (click)="getSelectedID(emp.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-delete-employee *ngIf="empID" [empID]="empID"></app-delete-employee>

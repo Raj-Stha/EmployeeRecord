@@ -1,0 +1,144 @@
+<div class="container-fluid">
+  <!-- Add Employee Form -->
+
+  <form
+    class="row py-4 px-sm-3 border-2 border-bottom"
+    [formGroup]="empDetail"
+    (ngSubmit)="createEmployee()"
+  >
+    <div class="form-group pb-3 col-sm col-md-6 col-lg">
+      <label for="name" class="h6 pb-1">Employee Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter your name"
+        formControlName="employeeName"
+        name="employeeName"
+        required
+        [class.is-invalid]="validate('employeeName')"
+      />
+
+      <div *ngIf="validate('employeeName')">
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('employeeName')?.errors?.['required']"
+        >
+          Required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('employeeName')?.errors?.['minlength']"
+          >More than 4 charater is required</small
+        >
+
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('employeeName')?.errors?.['maxlength']"
+          >Entered Name is Too Long</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group pb-3 col-sm col-md-6 col-lg">
+      <label for="designation" class="h6 pb-1">Designation</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="designation"
+        name="designation"
+        [ngClass]="{
+          'is-invalid': validate('designation')
+        }"
+      />
+      <div class="" *ngIf="validate('designation')">
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('designation')?.errors?.['required']"
+        >
+          Required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('designation')?.errors?.['minlength']"
+          >More than 4 charater is required</small
+        >
+
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('designation')?.errors?.['maxlength']"
+          >Too Long</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group pb-3 col-sm col-md-6 col-lg">
+      <label for="mobile" class="h6 pb-1">Mobile</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="mobile"
+        name="mobile"
+        [ngClass]="{
+          'is-invalid': validate('mobile') ||  empDetail.get('mobile')?.errors?.['min'] || empDetail.get('mobile')?.errors?.['max']
+        }"
+      />
+
+      <div class="" *ngIf="validate('mobile')">
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('mobile')?.errors?.['required']"
+        >
+          Required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="empDetail.get('mobile')?.errors?.['min'] || empDetail.get('mobile')?.errors?.['max']"
+          >Number must be 10 digits</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group pb-3 col-sm col-md-6 col-lg">
+      <label for="" class="h6 pb-1">Status</label>
+      <select
+        name="active"
+        id=""
+        class="form-select"
+        formControlName="active"
+        [class.is-invalid]="validate('active')"
+      >
+        <option value="" selected>Select Status</option>
+        <option value="Active" selected>Active</option>
+        <option value="Away">Away</option>
+      </select>
+      <small class="text-danger" *ngIf="validate('active')"
+        >Choose Option
+      </small>
+    </div>
+
+    <div
+      class="d-flex gap-2 gap-lg-3 align-items-center col-sm col-xs-12 pt-2"
+      [class.pb-sm-4]="empDetail.invalid && submitted"
+    >
+      <button
+        type="submit"
+        class="btn secondary px-2 py-2 col col-sm col-md-3 col-lg-5"
+      >
+        Create
+      </button>
+
+      <button
+        type="click"
+        class="btn btn-danger px-2 py-2 col col-sm col-md-3 col-lg-5"
+        (click)="resetForm()"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- List Employee -->
+<div class="container-fluid pt-4 mt-2 pb-3">
+  <app-list-employee></app-list-employee>
+</div>

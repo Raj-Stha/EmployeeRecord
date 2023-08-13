@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.primary {
+  background-color: darkslategray !important;
+}
+
+.secondary {
+  background-color: #116767;
+  color: white;
+}
+
+.secondary:hover {
+  background-color: #147e7e !important;
+  color: white;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.1rem rgba(8, 31, 31, 0.25);
+}

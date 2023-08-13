@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "employee": [
+    {
+      "employeeName": "Mina Shrestha",
+      "designation": "Full Stack Developer",
+      "mobile": 9840404404,
+      "active": "Away",
+      "id": 2
+    },
+    {
+      "employeeName": "Mina Shrestha",
+      "designation": "Developer",
+      "mobile": 1234567890,
+      "active": "Active",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
